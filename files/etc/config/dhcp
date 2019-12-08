@@ -1,0 +1,78 @@
+
+config dnsmasq
+	option domainneeded '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '1'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option nonwildcard '1'
+	option localservice '1'
+	option resolvfile '/tmp/resolv.conf.auto'
+	option port '6053'
+	option noresolv '1'
+	option allservers '0'
+	list server '/pool.ntp.org/8.8.8.8'
+
+config dhcp 'lan'
+	option interface 'lan'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option ra 'hybrid'
+	option dhcpv6 'hybrid'
+	option ndp 'hybrid'
+	option ra_management '1'
+	list dhcp_option '6,192.168.1.1'
+
+config dhcp 'wan'
+	option interface 'wan'
+	option ignore '1'
+
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
+	option loglevel '4'
+
+config srvhost
+	option srv '_vlmcs._tcp'
+	option target 'OpenWrt'
+	option port '1688'
+	option class '0'
+	option weight '100'
+
+config host
+	option name 'LLK-DESKTOP'
+	option dns '1'
+	option mac '24:5e:be:33:05:e6'
+	option ip '192.168.1.103'
+
+config host
+	option name 'llk-ubuntu'
+	option dns '1'
+	option mac '92:0c:c0:a2:e0:6e'
+	option ip '192.168.1.104'
+
+config host
+	option name 'LLK-PC'
+	option dns '1'
+	option mac '2c:4d:54:d4:21:e5'
+	option ip '192.168.1.109'
+
+config host
+	option name 'ONEPLUS-6T'
+	option dns '1'
+	option mac '64:a2:f9:ae:5e:08'
+	option ip '192.168.1.241'
+
+config host
+	option name 'rabbit'
+	option dns '1'
+	option mac '98:00:c6:e7:e7:17'
+	option ip '192.168.1.106'
+
