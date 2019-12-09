@@ -62,8 +62,6 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
-    - name: fix it
-      run: cd openwrt && wget https://raw.githubusercontent.com/pikachullk/Actions-OpenWrt/master/fix.sh && chmod +x fix.sh && ./fix.sh
       
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
@@ -104,12 +102,12 @@ jobs:
     - name : Upload targets ext4
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt firmware
+        name: OpenWrt firmware EXT4
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-uefi-gpt-ext4.img
         
     - name : Upload targets squashfs
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt firmware
+        name: OpenWrt firmware squashfs
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
         
