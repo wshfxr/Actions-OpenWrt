@@ -10,3 +10,4 @@
 git clone https://github.com/Ameykyl/luci-app-koolproxyR.git package/lean/luci-app-koolproxyR
 git clone https://github.com/tty228/luci-app-serverchan.git package/lean/luci-app-serverchan
 git clone https://github.com/happyzhang1995/luci-app-adguardhome.git package/lean/luci-app-adguardhome
+git clone https://github.com/happyzhang1995/openwrt-adguardhome package/lean/adguardhome
