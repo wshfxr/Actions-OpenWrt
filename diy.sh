@@ -12,4 +12,5 @@ git clone https://github.com/tty228/luci-app-serverchan package/lean/luci-app-se
 git clone https://github.com/happyzhang1995/luci-app-adguardhome package/lean/luci-app-adguardhome
 git clone https://github.com/happyzhang1995/openwrt-adguardhome package/lean/adguardhome
 git clone https://github.com/jerrykuku/luci-theme-argon package/lean/luci-theme-argon-mc
+git clone https://github.com/pymumu/smartdns smartdns
 
