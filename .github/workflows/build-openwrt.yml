@@ -42,16 +42,15 @@ jobs:
         sudo -E apt-get -qq clean
         curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
         sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
     - name: Clone source code
       env: 
         REPO_URL: https://github.com/pikachullk/lede
         REPO_BRANCH: master
-      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt        
+      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
-      
+
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
@@ -66,7 +65,6 @@ jobs:
         cd openwrt
         ../$DIY_SH
         make defconfig
-
 #    - name: SSH connection to Actions
 #      uses: P3TERX/debugger-action@master
 
@@ -75,12 +73,16 @@ jobs:
         cd openwrt && make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: Build
+    - name: Multi-thread compile
       run: |
         cd openwrt
-        echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc)
+    - name: Single-thread compile
+      if: failure()
+      run: |
+        cd openwrt
+        make -j1 V=s
 
     - name : Upload packages
       uses: actions/upload-artifact@master
