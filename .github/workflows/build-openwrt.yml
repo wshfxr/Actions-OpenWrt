@@ -128,4 +128,10 @@ jobs:
       with:
         name: OpenWrt firmware squashfs
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
+
+    - name : Upload targets UEFI-squashfs
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt firmware UEFI-squashfs
+        path: openwrt/bin/targets/x86/64/openwrt-x86-64-uefi-gpt-squashfs.img
         
